@@ -1,7 +1,7 @@
-const SignIn = () => {
+const SignUp = () => {
     return (
         <div>
-            <h1>User Login</h1>
+            <h1>Sign Up</h1>
             <form>
                 <label>Email</label>
                 <input type="email"/>
@@ -11,10 +11,12 @@ const SignIn = () => {
                 <input label="Password" type='password' />
                 <label>Password</label>
                 <input label="Password" type='password' />
-                <button />
+                <label>Sign Up as a Store?</label><br/>
+                <input type="checkbox"/>
+                <button className="submit-button">Submit</button>
             </form>
         </div>
     )
 }
 
-export default SignIn;
+export default SignUp;
