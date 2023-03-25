@@ -1,0 +1,58 @@
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "../Config/firebase"
+import React, { useState } from "react";
+import { doc, setDoc, addDoc } from "@firebase/firestore";
+
+const SignUp = () => {
+
+    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [password2, setPassword2] = useState('')
+    const [store, setStore] = useState(false)
+
+    const handleSubmit = async () => {
+        if (email !== "" && password !== "") {
+            try {
+                const res = await createUserWithEmailAndPassword(auth, email, password)
+                await updateProfile(res.user, {
+                    username,
+                    store,
+                })
+                await setDoc(doc(db, "users", res.user.uid), {
+                    uid: res.user.uid,
+                    username,
+                    email,
+                    store,
+                })
+            } catch(err) {
+                console.log(err)
+            }
+        }
+    }
+
+    const handleCheck = () => {
+        setStore(!store);
+    }
+
+    return (
+        <div>
+            <h1>Sign Up</h1>
+            <form onSubmit={handleSubmit}>
+                <label>Email</label>
+                <input type="email" onChange={(e) => setEmail(e.target.value)} />
+                <label>Username</label>
+                <input type='text'  onChange={(e) => setUsername(e.target.value)} />
+                <label>Password</label>
+                <input label="Password"  type='password' onChange={(e) => setPassword(e.target.value)} />
+                <label>Password</label>
+                <input label="Password"  type='password' onChange={(e) => setPassword2(e.target.value)} />
+                <label>Sign Up as a Store?</label><br />
+                <input type="checkbox" onChange={handleCheck}/>
+                <button className="submit-button">Submit</button>
+            </form>
+        </div>
+    )
+}
+
+export default SignUp;
