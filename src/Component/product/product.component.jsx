@@ -1,14 +1,15 @@
 import './product.styles.css';
-const Product=({product})=>{
-    console.log(product)
+const Product=({ id, name, price, date, provider })=>{
+    console.log(name)
     return(
         
         <div className="product-container">
-            <img src={product.url}/>
+
             <div>
-                <p>{`Product Name: ${product.title}`}</p>
-                <p>{`Price: ${product.albumId}$`}</p>
-                <p>{`Provider: ${product.title}`}</p>
+                <p>{`Product Name: ${name}`}</p>
+                <p>{`Price: ${price}$`}</p>
+                <p>{`Expiration: ${date}`}</p>
+                <p>{`Provider: ${provider}`}</p>
             </div>
         </div>
     )
