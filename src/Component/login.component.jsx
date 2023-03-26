@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../Config/firebase"
-
+import { auth, db } from "../Config/firebase"
+import { getDoc, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const navigate=useNavigate()
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log(1)
         if(email !== "" && password !== "") {
             signInWithEmailAndPassword(auth, email, password)
-            .then(() => console.log("Login success"))
+            .then((users)=>getDoc(doc(db, "users", users.user.uid)))
+            .then((doc)=>{
+                console.log(doc.data().store)
+                if(!doc.data().store){
+                    navigate("/products")
+                }else{
+                    navigate("/storeInterface")
+                }
+            })
             .catch((err) => console.log(err))
         }
     }

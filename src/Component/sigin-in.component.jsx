@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../Config/firebase"
 import React, { useState } from "react";
-import { doc, setDoc, addDoc } from "@firebase/firestore";
+import { doc, setDoc, addDoc, getDoc } from "@firebase/firestore";
 
 const SignUp = () => {
 
@@ -26,6 +26,8 @@ const SignUp = () => {
                     email,
                     store,
                 })
+
+                // const doc=getDoc()
             } catch(err) {
                 console.log(err)
             }
