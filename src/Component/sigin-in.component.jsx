@@ -1,8 +1,14 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../Config/firebase"
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { doc, setDoc, addDoc, getDoc } from "@firebase/firestore";
 import { useNavigate } from "react-router-dom";
+=======
+import { doc, setDoc, addDoc } from "@firebase/firestore";
+
+
+>>>>>>> alerts
 const SignUp = () => {
     const navigate=useNavigate()
     const [email, setEmail] = useState('')
@@ -10,6 +16,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
     const [store, setStore] = useState(false)
+    const [visible, setVisible] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,7 +44,10 @@ const SignUp = () => {
 
             } catch(err) {
                 console.log(err)
+                setVisible(true)
             }
+        } else {
+            setVisible(true)
         }
     }
 
@@ -60,9 +70,16 @@ const SignUp = () => {
                 <label>Sign Up as a Store?</label><br />
                 <input type="checkbox" onChange={handleCheck}/>
                 <button className="submit-button" onClick={handleSubmit}>Submit</button>
+                {visible ? <Alert /> : null}
             </form>
         </div>
     )
 }
+
+const Alert = () => (
+    <div id="alert">
+        email or password invalid
+    </div>
+)
 
 export default SignUp;
