@@ -3,6 +3,7 @@ import './App.css';
 import ProductsPage from "./Router/products-page/products-page.router"
 import { Route, Routes } from "react-router-dom";
 import StoresPage from './Router/stores-page/stores.router';
+
 function App() {
   return(
     <Routes>

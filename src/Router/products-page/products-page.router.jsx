@@ -8,7 +8,7 @@ const ProductsPage = () => {
             .then(response => response.json())
             .then(json => setMockProducts(json))
     }, [])
-
+    
     return (
         <div className="products-container">
             {mockProducts.filter((ele, index)=> index<20).map((product, idx)=> {

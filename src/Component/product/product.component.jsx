@@ -1,6 +1,6 @@
 import './product.styles.css';
 const Product=({product})=>{
-    console.log(product)
+    // console.log(product)
     return(
         
         <div className="product-container">

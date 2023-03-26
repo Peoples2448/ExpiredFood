@@ -3,7 +3,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../Config/firebase"
 import { getDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+// import { useContext } from "react";
+// import { UserContext } from "../Context/user.context";
 const Login = () => {
+    // const [setcurrentUser]=useContext(UserContext)
     const navigate=useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -14,14 +17,16 @@ const Login = () => {
         e.preventDefault();
         if(email !== "" && password !== "") {
             signInWithEmailAndPassword(auth, email, password)
-            .then((users)=>getDoc(doc(db, "users", users.user.uid)))
+            // .then((users)=>console.log(users))
+            .then((users)=>{
+                // setcurrentUser(user)
+                return getDoc(doc(db, "users", users.user.uid))})
             .then((doc)=>{
                 console.log(doc.data().store)
                 if(!doc.data().store){
                     navigate("/products")
                 }else{
                     navigate("/storeInterface")
-
                 }
             })
             .catch((err) => console.log(err))
