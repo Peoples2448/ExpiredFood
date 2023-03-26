@@ -7,12 +7,9 @@ const Login = () => {
     const navigate=useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-<<<<<<< HEAD
-    
-=======
+
     const [visible, setVisible] = useState(false)
 
->>>>>>> alerts
     const handleLogin = (e) => {
         e.preventDefault();
         if(email !== "" && password !== "") {
