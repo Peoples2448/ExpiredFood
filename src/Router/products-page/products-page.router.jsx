@@ -9,7 +9,6 @@ const ProductsPage = () => {
             .then(json => setMockProducts(json))
     }, [])
 
-    // console.log(mockProducts)
     return (
         <div className="products-container">
             {mockProducts.filter((ele, index)=> index<20).map((product, idx)=> {
