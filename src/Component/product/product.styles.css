@@ -1,0 +1,16 @@
+.product-container{
+    height: 400px;
+    width:48vw;
+    background-color: rgba(246, 243, 243, 0.8);
+    overflow: hidden;
+    margin: 30px auto;
+    display: flex;
+    position: relative;
+    border-radius: 30px;
+}
+
+.product-container div{
+    margin-top: 60px;
+    margin-left: 10px;
+    font-size: larger;
+}
