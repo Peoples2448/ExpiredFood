@@ -2,9 +2,9 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../Config/firebase"
 import React, { useState } from "react";
 import { doc, setDoc, addDoc, getDoc } from "@firebase/firestore";
-
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
-
+    const navigate=useNavigate()
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -27,7 +27,14 @@ const SignUp = () => {
                     store,
                 })
 
-                // const doc=getDoc()
+                if(!store){
+                    navigate("/products")
+                }else{
+                    navigate("/storeInterface")
+                }
+
+
+
             } catch(err) {
                 console.log(err)
             }

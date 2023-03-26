@@ -19,6 +19,7 @@ const Login = () => {
                     navigate("/products")
                 }else{
                     navigate("/storeInterface")
+
                 }
             })
             .catch((err) => console.log(err))
