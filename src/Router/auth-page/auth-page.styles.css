@@ -38,3 +38,7 @@
     color: white;
     
 }
+
+.auth-page-container #alert {
+    color: red;
+}
