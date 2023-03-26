@@ -11,7 +11,8 @@ const SignUp = () => {
     const [password2, setPassword2] = useState('')
     const [store, setStore] = useState(false)
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         if (email !== "" && password !== "") {
             try {
                 const res = await createUserWithEmailAndPassword(auth, email, password)
@@ -38,18 +39,18 @@ const SignUp = () => {
     return (
         <div>
             <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
+            <form >
                 <label>Email</label>
                 <input type="email" onChange={(e) => setEmail(e.target.value)} />
                 <label>Username</label>
                 <input type='text'  onChange={(e) => setUsername(e.target.value)} />
                 <label>Password</label>
                 <input label="Password"  type='password' onChange={(e) => setPassword(e.target.value)} />
-                <label>Password</label>
+                <label>Confirm Password</label>
                 <input label="Password"  type='password' onChange={(e) => setPassword2(e.target.value)} />
                 <label>Sign Up as a Store?</label><br />
                 <input type="checkbox" onChange={handleCheck}/>
-                <button className="submit-button">Submit</button>
+                <button className="submit-button" onClick={handleSubmit}>Submit</button>
             </form>
         </div>
     )

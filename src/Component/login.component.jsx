@@ -7,7 +7,9 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
+        console.log(1)
         if(email !== "" && password !== "") {
             signInWithEmailAndPassword(auth, email, password)
             .then(() => console.log("Login success"))
@@ -18,12 +20,12 @@ const Login = () => {
     return (
         <div>
             <h1>User Login</h1>
-            <form onSubmit={handleLogin}>
+            <form>
                 <label>Email</label>
-                <input type='text' onChange={(e) => setEmail(e.target.value)}/>
+                <input type='email' onChange={(e) => setEmail(e.target.value)}/>
                 <label>Password</label>
                 <input label="Password" type='password' onChange={(e) => setPassword(e.target.value)}/>
-                <button className="submit-button">Submit</button>
+                <button className="submit-button" type="submit" onClick={handleLogin}>Submit</button>
             </form>
         </div>
     )
